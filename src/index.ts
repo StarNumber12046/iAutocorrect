@@ -1,5 +1,5 @@
-import {Injector, webpack} from "replugged";
-import {capitalize, isStartsWithLink} from "./helpers";
+import { Injector, webpack } from "replugged";
+import { capitalize, isStartsWithLink } from "./helpers";
 
 const inject = new Injector();
 
@@ -29,8 +29,6 @@ export async function start(): Promise<void> {
     });
   }
 }
-
-
 
 export function stop(): void {
   inject.uninjectAll();
