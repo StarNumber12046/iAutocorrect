@@ -1,24 +1,36 @@
-import { Injector, webpack } from "replugged";
+import {Injector, webpack} from "replugged";
+import {capitalize, isStartsWithLink} from "./helpers";
 
 const inject = new Injector();
 
-export async function start(): Promise<void> {
-  const typingMod = await webpack.waitForModule<{
-    startTyping: (channelId: string) => void;
-  }>(webpack.filters.byProps("startTyping"));
-  const getChannelMod = await webpack.waitForModule<{
-    getChannel: (id: string) => {
-      name: string;
-    };
-  }>(webpack.filters.byProps("getChannel"));
+interface SendMessageEvent {
+  content: string;
+  invalidEmojis: string[];
+  tts: boolean;
+  validNonShortcutEmojis: string[];
+}
 
-  if (typingMod && getChannelMod) {
-    inject.instead(typingMod, "startTyping", ([channel]) => {
-      const channelObj = getChannelMod.getChannel(channel);
-      console.log(`Typing prevented! Channel: #${channelObj?.name ?? "unknown"} (${channel}).`);
+export async function start(): Promise<void> {
+  const sendMessageMod = await webpack.waitForModule<{
+    sendMessage: (channelId: string, message: SendMessageEvent) => void;
+  }>(webpack.filters.byProps("sendMessage"));
+
+  if (sendMessageMod) {
+    inject.after(sendMessageMod, "sendMessage", (args) => {
+      const { content } = args[1];
+
+      if (isStartsWithLink(content)) {
+        return args;
+      }
+
+      args[1].content = capitalize(content);
+
+      return args;
     });
   }
 }
+
+
 
 export function stop(): void {
   inject.uninjectAll();
