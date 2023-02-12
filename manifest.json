@@ -1,16 +1,16 @@
 {
-  "id": "dev.agentrby.Capitalize",
+  "id": "dev.starnumber.iAutocorrect",
   "name": "Replugged Capitalize",
-  "description": "Capitalize first letter in your message. Ignore links.",
+  "description": "iAutocorrect from Beluga video",
   "author": {
-    "name": "Agent_RBY_",
-    "discordID": "684439735833460771",
-    "github": "AgentRBY"
+    "name": "StarNumber12046",
+    "discordID": "870649046019244043",
+    "github": "StarNumber12046"
   },
   "version": "1.0.0",
   "updater": {
     "type": "github",
-    "id": "AgentRBY/RepluggedCapitalize"
+    "id": "StarNumber12046/iAutocorrect"
   },
   "license": "MIT",
   "type": "replugged-plugin",
