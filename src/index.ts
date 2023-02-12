@@ -5,13 +5,19 @@ const inject = new Injector();
 
 export function start(): void {
   inject.after(common.messages, "sendMessage", (args) => {
+    console.log(args)
+
     const { content } = args[1];
-
-    if (isStartsWithLink(content)) {
-      return args;
+    console.log(content)
+    const words = content.split(" ")
+    for (let j of words) {
+      if (!isStartsWithLink(j)) {
+        words[words.indexOf(j)] = capitalize(j)
+      }
     }
+    
 
-    args[1].content = capitalize(content);
+    args[1].content = words.join(" ");
 
     return args;
   });
