@@ -1,5 +1,6 @@
 # iAutocorrect plugin
-[![Install in Replugged](https://img.shields.io/badge/-Install%20in%20Replugged-blue?style=for-the-badge&logo=none)](https://replugged.dev/install?identifier=StarNumber12046/iAutocorrect&source=github)
+[![Install in Replugged](https://img.shields.io/badge/-Install%20in%20Replugged-blue?style=for-the-badge&logo=none)](https://replugged.dev/install?id=StarNumber12046/iAutocorrect&source=github&identifier=dev.starnumber.iAutocorrect)
+
 This plugin capitalizes the first letter of every word in a sentence except for links and prefixes it with an "i"
 
 > **Warning** outdated
